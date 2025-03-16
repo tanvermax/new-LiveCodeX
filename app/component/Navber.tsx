@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link'
 import React from 'react'
-import { SignIn, SignOut } from './auth-component';
+import { SignOut } from './auth-component';
 import { auth } from '@/auth';
 
 const Navber = async () => {
-    const session =  await auth();
+    const session  =  await auth();
     console.log(session);
     
-    const user = false;
+    // const user = false;
 
     return (
         <header className='bg-gray-800 text-white p-4'>
