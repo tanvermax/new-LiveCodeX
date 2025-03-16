@@ -11,7 +11,7 @@ return(
         await signIn(provider)
       }}
     >
-      <button {...props} type="submit">Signin with GitHub</button>
+      <button {...props} type="submit">Signin with Social platfrom</button>
     </form>
 )
 }
