@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link'
 import React from 'react'
-import { SignIn } from './auth-component';
+import { SignIn, SignOut } from './auth-component';
 import { auth } from '@/auth';
 
 const Navber = async () => {
@@ -25,15 +25,17 @@ const Navber = async () => {
 
                 </ul>
                 {
-                    session?.user ? <div className='space-x-4 flex items-center'>
+                   session ? <div className='space-x-4 flex items-center'>
                         <Link href={"/profile"}>
                          {/* <Image src="/avatar.png" alt="User Avatar" width={40} height={40} /> */}
                          <Image src={`${session.user.image}`} alt="User Avatar" width={40} height={40} />
                         </Link> 
 
-                        <button className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'>Log out</button>
+                        <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'><SignOut></SignOut></div>
                     </div> : <div>
-                        <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'><SignIn></SignIn></div>
+                        <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'>
+                            <Link href={"/login"}>login</Link>
+                        </div>
                     </div>
                 }
             </nav>
