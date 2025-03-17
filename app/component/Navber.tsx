@@ -11,15 +11,15 @@ const Navber = async () => {
         <header className='bg-gray-800 text-white p-4'>
             <nav className='container mx-auto flex justify-between'>
                 <div className='text-lg font-semibold'>
-                    <Link href="/">LOGO</Link>
+                    <Link href="/">LiveCodeX</Link>
                 </div>
 
                 {/* Navigation Items */}
                 <ul className='flex space-x-6 items-center'>
-                    <li><Link href="/" className='hover:text-yellow-500'>HOME</Link></li>
-                    <li><Link href="/about" className='hover:text-yellow-500'>ABOUT</Link></li>
-                    <li><Link href="/dashboard" className='hover:text-yellow-500'>DASHBOARD</Link></li>
-                    <li><Link href="/contact" className='hover:text-yellow-500'>CONTACT</Link></li>
+                    <li><Link href="/" className='hover:text-yellow-500'>Home</Link></li>
+                    <li><Link href="/about" className='hover:text-yellow-500'>Pratice</Link></li>
+                    {/* <li><Link href="/dashboard" className='hover:text-yellow-500'>DASHBOARD</Link></li> */}
+                    <li><Link href="/contact" className='hover:text-yellow-500'>Complete</Link></li>
                 </ul>
 
                 {/* User Section */}
@@ -31,6 +31,7 @@ const Navber = async () => {
                                 alt="User Avatar" 
                                 width={40} 
                                 height={40} 
+                                className='rounded-full border-amber-300 border-2'
                             />
                         </Link> 
                         <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'>

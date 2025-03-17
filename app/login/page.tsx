@@ -30,7 +30,7 @@ const LoginPage = () => {
                     <div className=' flex gap-5'>
                     
                         <SignIn className='cursor-pointer' provider='google'></SignIn>
-                        <Image width={24} height={24}  alt="User Avatar"  src={"/google.png"}></Image>
+                        <Image width={20} height={10}  alt="User Avatar"  src={"/google.png"}></Image>
                         <SignIn className='cursor-pointer' provider='github'></SignIn>
                         <Image width={24} height={24}  alt="User Avatar"  src={"/github.png"}></Image>
                     </div>
