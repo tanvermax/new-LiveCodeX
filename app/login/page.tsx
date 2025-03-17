@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { SignIn } from '../component/auth-component'
+import Image from 'next/image'
 
 const LoginPage = () => {
     return (
@@ -25,13 +27,17 @@ const LoginPage = () => {
                             </fieldset>
                         </div>
                     </div>
-                    <div>
-                <SignIn></SignIn>
-            </div>
+                    <div className=' flex gap-5'>
+                    
+                        <SignIn className='cursor-pointer' provider='google'></SignIn>
+                        <Image width={24} height={24}  alt="User Avatar"  src={"/google.png"}></Image>
+                        <SignIn className='cursor-pointer' provider='github'></SignIn>
+                        <Image width={24} height={24}  alt="User Avatar"  src={"/github.png"}></Image>
+                    </div>
                 </div>
-                
+
             </div>
-            
+
         </div>
     )
 }
