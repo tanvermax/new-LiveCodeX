@@ -1,6 +1,6 @@
 "use client"; // ✅ Ensure client-side execution
 import { signIn, signOut } from "next-auth/react";
-import Image from "next/image";
+
 import React from "react";
 
 export const SignIn = ({
@@ -25,7 +25,7 @@ export const SignOut = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) =>
             onClick={() => signOut({ callbackUrl: "/" })} // ✅ Redirect after logout
             type="button"
         >
-          <Image width={24} height={24}  alt="User Avatar"  src={"/google.png"}></Image>
+         
             Sign out
         </button>
     );
