@@ -1,4 +1,4 @@
-import Banner from "./component/Banner";
+import Banner from "../component/Banner";
 
 
 export default function Home() {
@@ -6,7 +6,7 @@ export default function Home() {
    <div>
 
       <h1 className="text-2xl font-bold text-center p-4">
-        
+
         <Banner></Banner>
       </h1>
    </div>
