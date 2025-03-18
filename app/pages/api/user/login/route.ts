@@ -2,8 +2,10 @@ import { userSchemaStr } from "@/lib/Schemas/Schema";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs"
 import Jwt from "jsonwebtoken"
+import { DBConnection } from "@/lib/DB_Connection/DB_Connection";
 export async function POST(request: NextRequest) {
     try {
+        await DBConnection()
         const reqBody = await request?.json()
         const { email, password } = reqBody
         const findUser = await userSchemaStr.findOne({ email: email })
