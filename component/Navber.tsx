@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SignOut } from "./auth-component";
 import axios from "axios";
 import { Session } from "next-auth";
+import swal from "sweetalert";
 
 // Define TypeScript interface for Navbar props
 interface NavbarProps {
@@ -14,11 +15,37 @@ interface NavbarProps {
 
 // Navbar component
 const Navbar: React.FC<NavbarProps> = ({ session }) => {
+  const [authUser, setAuthUser] = useState<any>(null)
+
+
+
+  const logoutHandler = async () => {
+    try {
+      const response = await axios.get("/pages/api/user/logout")
+      if (response?.data?.success) {
+        swal({
+          title: response?.data?.message,
+          icon: "success"
+        })
+      } else {
+        swal({
+          title: response?.data?.message,
+          icon: "warning"
+        })
+      }
+
+    } catch (error) {
+      throw new Error(String(error))
+
+    }
+  }
+
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get("/pages/api/user/decodedToken");
-        console.log("User data:", response.data);
+        setAuthUser(response?.data?.token)
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -26,6 +53,10 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
 
     fetchUser();
   }, []);
+
+
+
+
 
   return (
     <header className="bg-gray-800 text-white p-4">
@@ -54,19 +85,39 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
         </ul>
 
         {/* User Section */}
-        {session ? (
+        {(session || authUser) ? (
           <div className="flex items-center space-x-4">
+
             <Link href="/profile">
-              <Image
-                src={session.user?.image || "/avatar.png"}
-                alt="User Avatar"
-                width={40}
-                height={40}
-                className="rounded-full border-amber-300 border-2"
-              />
+              {
+                session === null ?
+                  <Image
+                    src={authUser?.image || "/avatar.png"}
+                    alt="User Avatar"
+                    width={40}
+                    height={40}
+                    className="rounded-full border-amber-300 border-2"
+                  />
+                  : <Image
+                    src={session?.user?.image || "/avatar.png"}
+                    alt="User Avatar"
+                    width={40}
+                    height={40}
+                    className="rounded-full border-amber-300 border-2"
+                  />
+              }
+
+
             </Link>
+
+
             <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full">
-              <SignOut />
+              {
+                session === null ? <button type="button" onClick={logoutHandler}>
+                  Logout
+                </button> : <SignOut />
+              }
+
             </div>
           </div>
         ) : (
