@@ -1,51 +1,82 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { SignOut } from './auth-component';
-import { auth } from '@/auth';
+"use client";
 
-const Navber = async () => {
-    const session  = await auth();
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { SignOut } from "./auth-component";
+import axios from "axios";
+import { Session } from "next-auth";
 
-    return (
-        <header className='bg-gray-800 text-white p-4'>
-            <nav className='container mx-auto flex justify-between'>
-                <div className='text-lg font-semibold'>
-                    <Link href="/">LiveCodeX</Link>
-                </div>
+// Define TypeScript interface for Navbar props
+interface NavbarProps {
+  session: Session | null;
+}
 
-                {/* Navigation Items */}
-                <ul className='flex space-x-6 items-center'>
-                    <li><Link href="/" className='hover:text-yellow-500'>Home</Link></li>
-                    <li><Link href="/about" className='hover:text-yellow-500'>Pratice</Link></li>
-                    {/* <li><Link href="/dashboard" className='hover:text-yellow-500'>DASHBOARD</Link></li> */}
-                    <li><Link href="/contact" className='hover:text-yellow-500'>Complete</Link></li>
-                </ul>
+// Navbar component
+const Navbar: React.FC<NavbarProps> = ({ session }) => {
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get("/pages/api/user/decodedToken");
+        console.log("User data:", response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
 
-                {/* User Section */}
-                {session ? (
-                    <div className='space-x-4 flex items-center'>
-                        <Link href="/profile">
-                            <Image 
-                                src={session.user?.image || "/avatar.png"} 
-                                alt="User Avatar" 
-                                width={40} 
-                                height={40} 
-                                className='rounded-full border-amber-300 border-2'
-                            />
-                        </Link> 
-                        <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'>
-                            <SignOut />
-                        </div>
-                    </div>
-                ) : (
-                    <div className='bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full'>
-                        <Link href="/login">Login</Link>
-                    </div>
-                )}
-            </nav>
-        </header>
-    );
+    fetchUser();
+  }, []);
+
+  return (
+    <header className="bg-gray-800 text-white p-4">
+      <nav className="container mx-auto flex justify-between items-center">
+        <div className="text-lg font-semibold">
+          <Link href="/">LiveCodeX</Link>
+        </div>
+
+        {/* Navigation Links */}
+        <ul className="flex space-x-6 items-center">
+          <li>
+            <Link href="/" className="hover:text-yellow-500">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="hover:text-yellow-500">
+              Practice
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className="hover:text-yellow-500">
+              Complete
+            </Link>
+          </li>
+        </ul>
+
+        {/* User Section */}
+        {session ? (
+          <div className="flex items-center space-x-4">
+            <Link href="/profile">
+              <Image
+                src={session.user?.image || "/avatar.png"}
+                alt="User Avatar"
+                width={40}
+                height={40}
+                className="rounded-full border-amber-300 border-2"
+              />
+            </Link>
+            <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full">
+              <SignOut />
+            </div>
+          </div>
+        ) : (
+          <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full">
+            <Link href="/login">Login</Link>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
 };
 
-export default Navber;
+export default Navbar;
