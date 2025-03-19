@@ -5,6 +5,7 @@ import Navber from "../component/Navber";
 import Footer from "../component/Footer";
 import { auth } from "@/auth"
 import Courses from "@/component/Courses";
+import Feature from "@/component/Feature";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,6 +31,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           {children}
         </main>
          <Courses></Courses>
+         <Feature></Feature>
+
         <Footer />
       </body>
     </html>
