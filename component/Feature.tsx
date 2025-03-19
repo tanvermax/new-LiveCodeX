@@ -15,7 +15,7 @@ const features = [
     {
         title: "Hands-on Learning Experience",
         description:
-            "Practice as you learn with our built-in interactive IDE. Each lesson includes real-world exercises to help you apply concepts and gain instant feedback.",
+            "Practice as you learn with Our built-in interactive IDE. Each lesson includes real-world exercises to help you apply concepts and gain instant feedback.",
         buttonText: "Try a Lesson",
         image: "https://i.ibb.co/xtyGJKzB/pic-1.png",
         icon: <FaCode className="text-blue-500 text-5xl" />,
