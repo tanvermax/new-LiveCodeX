@@ -35,7 +35,7 @@ export default function Home() {
 
       <div className="text-left">
         <LanguageSelector runCode={runCode} />
-        <CodeEditor language="javascript" value={code} onChange={setCode} />
+        <CodeEditor language="javascript" value={code} onChange={(value) => setCode(value ?? '')} />
         
         {/* Run Code Button */}
         <button
