@@ -6,7 +6,7 @@ const features = [
     {
         title: "Practical, Job Relevant Topics",
         description:
-            "From Python to web development, master the concepts employers demand. Our structured courses ensure your smooth transition from beginner to professional.",
+            "From Python to Web development, master the concepts employers demand. Our structured courses ensure your smooth transition from beginner to professional.",
         buttonText: "Browse Catalog",
         image: "https://i.ibb.co/xtyGJKzB/pic-1.png",
         icon: <FaBookOpen className="text-blue-500 text-5xl" />,
