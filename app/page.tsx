@@ -4,6 +4,9 @@ import { useState } from "react";
 import { CodeEditor } from "@/component/shared/CodeEditor";
 import LanguageSelector from "@/component/shared/LanguageSelector";
 import Banner from "../component/Banner";
+import Courses from "@/component/Courses";
+import Testimonials from "@/component/Testimonials";
+import Feature from "@/component/Feature";
 
 export default function Home() {
   const [code, setCode] = useState<string>("console.log('Hello, World!');");
@@ -36,7 +39,7 @@ export default function Home() {
       <div className="text-left">
         <LanguageSelector runCode={runCode} />
         <CodeEditor language="javascript" value={code} onChange={(value) => setCode(value ?? '')} />
-        
+
         {/* Run Code Button */}
         <button
           onClick={runCode}
@@ -52,7 +55,14 @@ export default function Home() {
         </div>
       </div>
 
+
       <Banner />
+
+      <Courses></Courses>
+      <Testimonials></Testimonials>
+      <Feature></Feature>
+
+
     </div>
   );
 }
