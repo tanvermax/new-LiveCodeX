@@ -4,6 +4,7 @@ import "./globals.css";
 import Navber from "../component/Navber";
 import Footer from "../component/Footer";
 import { auth } from "@/auth"
+import Courses from "@/component/Courses";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main className="container mx-auto min-h-[calc(100vh-405px)]">
           {children}
         </main>
+         <Courses></Courses>
         <Footer />
       </body>
     </html>
