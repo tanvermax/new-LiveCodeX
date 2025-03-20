@@ -57,12 +57,9 @@ export default function Home() {
 
 
       <Banner />
-
       <Courses></Courses>
       <Testimonials></Testimonials>
       <Feature></Feature>
-
-
     </div>
   );
 }
