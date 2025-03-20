@@ -148,12 +148,10 @@ export default function Home() {
       </div>
 
       <Banner />
-      <Courses></Courses>
-      <Testimonials></Testimonials>
-      <Feature></Feature>
       <Courses />
       <Testimonials />
       <Feature />
+      
     </div>
   );
 }
