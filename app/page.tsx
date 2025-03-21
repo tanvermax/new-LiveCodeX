@@ -146,6 +146,7 @@ export default function Home() {
           <pre>{output}</pre>
         </div>
       </div>
+
       <Banner />
       <Courses />
       <Testimonials />
