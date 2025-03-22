@@ -190,6 +190,7 @@ import Banner from "../component/Banner";
 import Courses from "@/component/Courses";
 import Testimonials from "@/component/Testimonials";
 import Feature from "@/component/Feature";
+import Chat from "@/component/Chat";
 
 const languageOptions = {
   javascript: { id: 63, name: "JavaScript", extension: "js" },
@@ -367,6 +368,10 @@ export default function Home() {
           <pre>{output}</pre>
         </div>
       </div>
+
+      <section className="py-8">
+        <Chat/>
+      </section>
 
       <Banner />
       <Courses />
