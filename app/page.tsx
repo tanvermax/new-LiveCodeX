@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { CodeEditor } from "@/component/shared/CodeEditor";
+// import { CodeEditor } from "@/component/shared/CodeEditor";
 import LanguageSelector from "@/component/shared/LanguageSelector";
 import Banner from "../component/Banner";
 import Courses from "@/component/Courses";
 import Testimonials from "@/component/Testimonials";
 import Feature from "@/component/Feature";
+import CodeEditor from "@/component/shared/CodeEditor";
 
 export default function Home() {
   const [code, setCode] = useState<string>("console.log('Hello, World!');");
