@@ -42,7 +42,7 @@ const CodeEditor = ({
         >
           <option value="vs-dark">Dark</option>
           <option value="vs-light">Light</option>
-          <option value="hc-black">High Contrast</option>
+          <option value="hc-black">High contrast</option>
         </select>
       </div>
 
