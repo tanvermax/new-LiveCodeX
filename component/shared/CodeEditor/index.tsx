@@ -33,9 +33,8 @@
 // };
 
 
-
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Editor from "@monaco-editor/react";
 
 type Props = {
@@ -56,7 +55,8 @@ const CodeEditor = ({
   height = "50vh",
   onChange,
 }: Props) => {
-  const [theme, setTheme] = useState("vs-dark"); // Initial theme
+
+ 
   const [code, setCode] = useState<string>(() => {
     // Load saved code from local storage on initial render
     return localStorage.getItem(LOCAL_STORAGE_KEY) || "";
@@ -74,11 +74,15 @@ const CodeEditor = ({
     if (onChange) {
       onChange(value);
     }
-  };
+
+  const [theme, setTheme] = useState("vs-dark"); // Set initial theme to "vs-dark"
+
+
 
   return (
     <div>
-      {/* Theme Selector */}
+
+
       <div className="mb-4">
         <label htmlFor="theme-selector" className="mr-2 font-bold">
           Select Theme:
@@ -106,6 +110,7 @@ const CodeEditor = ({
         language={language ?? DEFAULT_LANGUAGE}
         // value={ value ||code || ""} // Added value prop
         value={ code ||value || ""}
+
       />
     </div>
   );
