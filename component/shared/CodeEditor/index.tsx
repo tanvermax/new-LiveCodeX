@@ -21,29 +21,15 @@ const CodeEditor = ({
   height = "50vh",
   onChange,
 }: Props) => {
-  const [theme, setTheme] = useState("vs-dark"); // Initial theme
-  const [code, setCode] = useState<string>(() => {
-    // Load saved code from local storage on initial render
-    return localStorage.getItem(LOCAL_STORAGE_KEY) || "";
-  });
+  const [theme, setTheme] = useState("vs-dark"); // Set initial theme to "vs-dark"
 
-  // Function to handle theme change
   const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(event.target.value);
-  };
-
-  // Function to handle code change
-  const handleCodeChange = (value: string | undefined) => {
-    setCode(value || "");
-    localStorage.setItem(LOCAL_STORAGE_KEY, value || ""); // Auto-save to local storage
-    if (onChange) {
-      onChange(value);
-    }
+    setTheme(event.target.value); // Change the theme based on user selection
   };
 
   return (
     <div>
-      {/* Theme Selector */}
+      {/* Dropdown for selecting theme */}
       <div className="mb-4">
         <label htmlFor="theme-selector" className="mr-2 font-bold">
           Select Theme:
@@ -69,17 +55,10 @@ const CodeEditor = ({
         onChange={handleCodeChange}
         defaultLanguage={DEFAULT_LANGUAGE}
         language={language ?? DEFAULT_LANGUAGE}
-        value={code ||value || ""} // Added value prop
+        value={value || ""}
       />
     </div>
   );
 };
 
 export default CodeEditor;
-
-
-
-
-
-
-
