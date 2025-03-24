@@ -3,7 +3,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { CodeEditor } from "@/component/shared/CodeEditor";
 
 import LanguageSelector from "@/component/shared/LanguageSelector";
 import Banner from "../component/Banner";
