@@ -32,14 +32,19 @@ const CodeEditor = ({
     setTheme(event.target.value);
   };
 
-  // Function to handle code change
+ 
   const handleCodeChange = (value: string | undefined) => {
-    setCode(value || "");
-    localStorage.setItem(LOCAL_STORAGE_KEY, value || ""); // Auto-save to local storage
-    if (onChange) {
-      onChange(value);
+    try {
+      setCode(value || "");
+      localStorage.setItem(LOCAL_STORAGE_KEY, value || ""); // Auto-save to local storage
+      if (onChange) {
+        onChange(value);
+      }
+    } catch (error) {
+      console.error("Error saving to localStorage:", error);
     }
   };
+  
 
   return (
     <div>
