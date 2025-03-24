@@ -72,17 +72,23 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
               Home
             </Link>
           </li>
-          
           <li>
             <Link href="/about" className="hover:text-yellow-500">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/practice" className="hover:text-yellow-500">
               Practice
             </Link>
           </li>
+
           <li>
             <Link href="/contact" className="hover:text-yellow-500">
               Complete
             </Link>
           </li>
+
         </ul>
 
         {/* User Section */}

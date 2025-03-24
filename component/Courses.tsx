@@ -1,13 +1,7 @@
 import React from 'react';
 import CourseCard from './courseCard';
 import { FaCuttlefish, FaJava, FaJs, FaPython } from 'react-icons/fa6';
-
-
 import { RiGitMergeLine } from "react-icons/ri";
-import { FaBookOpen, FaCode } from "react-icons/fa";
-import Image from "next/image";
-import { FaCheckCircle } from "react-icons/fa";
-
 
 const Courses = () => {
 
@@ -27,7 +21,6 @@ const Courses = () => {
     const dataStructures = [
         { title: "Learn Python", description: "Get hands-on practice and nail down the fundamentals of Python to jumpstart your coding journey", learners: "160K+", rating: 4.7, icon: <RiGitMergeLine
              className="text-blue-500" /> },
-        // eslint-disable-next-line react/jsx-no-undef
         { title: "Learn Java", description: "Get practical experience coding in Java programming with this interactive and practical course", learners: "108K+", rating: 4.7, icon: <RiGitMergeLine className="text-blue-500" /> },
         { title: "Learn C++", description: "Join this interactive and hands-on C++ course to master the basic syntax of the language.", learners: "60K+", rating: 4.7, icon: <RiGitMergeLine className="text-blue-500" /> },
         { title: "Learn C++", description: "Join this interactive and hands-on C++ course to master the basic syntax of the language.", learners: "60K+", rating: 4.7, icon: <RiGitMergeLine className="text-blue-500" /> },
