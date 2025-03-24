@@ -131,7 +131,7 @@ export default function Home() {
     document.body.removeChild(link);
   };
 
-  const uploadCode = (event:any) => {
+  const uploadCode = (event: any) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -149,7 +149,7 @@ export default function Home() {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold text-center p-4">Multi-Language Code Editor</h1>
+      <h1 className="text-2xl font-bold text-center p-4">Multi-Language <span className="text-green-400">Online</span> Code Editor</h1>
 
       <div className="text-left">
         <LanguageSelector
@@ -157,8 +157,13 @@ export default function Home() {
           onChange={(lang) => setLanguage(lang as keyof typeof languageOptions)}
         />
 
-        <CodeEditor language={language} value={code} onChange={(value) => setCode(value ?? "")} />
-
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+          <CodeEditor language={language} value={code} onChange={(value) => setCode(value ?? "")} />
+          <div className="bg-gray-900 text-white p-3 rounded-md min-h-[100px] mt-3">
+            <strong>Output:</strong>
+            <pre>{output}</pre>
+          </div>
+        </div>
         <div className="flex space-x-3 mt-3">
           <button
             onClick={runCode}
@@ -183,10 +188,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="bg-gray-900 text-white p-3 rounded-md min-h-[100px] mt-3">
-          <strong>Output:</strong>
-          <pre>{output}</pre>
-        </div>
+
       </div>
       <Banner />
       <Courses />

@@ -17,7 +17,7 @@ const LOCAL_STORAGE_KEY = "code-editor-content"; // Key for local storage
 const CodeEditor = ({
   language,
   value,
-  width = "50vw",
+  // width = "50vw",
   height = "50vh",
   onChange,
 }: Props) => {
@@ -62,14 +62,14 @@ const CodeEditor = ({
 
       {/* Monaco Editor */}
       <Editor
-        className="border-4 text-xl border-blue-400"
+        className=" text-xl "
         theme={theme}
         height={height}
-        width={width}
+        // width={width}
         onChange={handleCodeChange}
         defaultLanguage={DEFAULT_LANGUAGE}
         language={language ?? DEFAULT_LANGUAGE}
-        value={ value || code|| ""} // Added value prop
+        value={value || code || ""} // Added value prop
       />
     </div>
   );
