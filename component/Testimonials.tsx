@@ -11,7 +11,7 @@ import Image from "next/image";
 const testimonials = [
     {
         name: "Ariful Islam",
-        text: "These are the best problems for beginners. The problems are based on basic logic and definitely, the learner who is a beginner will enjoy solving such problems and will improve day by day.",
+        text: "These are the best problems for Beginners. The problems are based on basic logic and definitely, the learner who is a beginner will enjoy solving such problems and will improve day by day.",
         country: "Bangladesh",
         image: "https://i.ibb.co/F6sgTsX/man-man.png",
     },
