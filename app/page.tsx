@@ -1,5 +1,4 @@
 
-
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -119,6 +118,7 @@ export default function Home() {
     }
   };
 
+
   const downloadCode = () => {
     const fileExtension = languageOptions[language].extension;
     const fileName = `code.${fileExtension}`;
@@ -145,6 +145,7 @@ export default function Home() {
   if (!isClient) {
     return <p className="text-center text-gray-500">Loading...</p>;
   }
+
 
   return (
     <div className="p-4">
@@ -187,7 +188,6 @@ export default function Home() {
           <pre>{output}</pre>
         </div>
       </div>
-
       <Banner />
       <Courses />
       <Testimonials />
@@ -195,6 +195,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
