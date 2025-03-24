@@ -6,10 +6,12 @@ import Footer from "../component/Footer";
 import { auth } from "@/auth"
 
 const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -22,7 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await auth();
   return (
     <html lang="en">
-      <body className={`${geistSans.className} ${geistMono.className}`}>
+      <body className={`${geistSans.variable} ${geistMono.className}`}>
         <Navber session={session} ></Navber>
         <main className=" mx-auto min-h-[calc(100vh-405px)]">
           {children}
