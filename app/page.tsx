@@ -2,6 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 import LanguageSelector from "@/component/shared/LanguageSelector";
 import Banner from "../component/Banner";
 import Courses from "@/component/Courses";
