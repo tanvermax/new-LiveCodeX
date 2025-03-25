@@ -166,17 +166,33 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           onClick={() => setIsopen(false)}
         />
         <ul className="space-y-4">
-          <li>
-            <Link href="/" className="hover:text-gray-300" onClick={() => setIsopen(false)}>Home</Link>
+        <li>
+            <Link href="/" className="hover:text-yellow-500 text-xs lg:text-base ">
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/about" className="hover:text-gray-300" onClick={() => setIsopen(false)}>About</Link>
+            <Link href="/compiler" className="hover:text-yellow-500  text-xs lg:text-base">
+              Compiler
+            </Link>
+          </li>
+          
+
+          <li>
+            <Link href="/practice" className="hover:text-yellow-500 text-xs lg:text-base">
+              Practice
+            </Link>
+          </li>
+
+          <li>
+            <Link href="/contact" className="hover:text-yellow-500 text-xs lg:text-base">
+              Complete
+            </Link>
           </li>
           <li>
-            <Link href="/services" className="hover:text-gray-300" onClick={() => setIsopen(false)}>Services</Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-gray-300" onClick={() => setIsopen(false)}>Contact</Link>
+            <Link href="/about" className="hover:text-yellow-500 text-xs lg:text-base">
+              About
+            </Link>
           </li>
         </ul>
       </div>
