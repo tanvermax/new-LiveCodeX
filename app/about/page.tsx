@@ -2,7 +2,9 @@ import React from 'react'
 
 const AboutPage = () => {
   return (
-    <div>AboutPage</div>
+    <div>
+      <h2>Why LiveCodeX </h2>
+    </div>
   )
 }
 
