@@ -24,7 +24,6 @@ export const SignOut = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) =>
             onClick={() => signOut({ callbackUrl: "/" })} // ✅ Redirect after logout
             type="button"
         >
-         
             Sign out
         </button>
     );

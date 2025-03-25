@@ -208,6 +208,7 @@ export default function Home() {
       <Courses />
       <Testimonials />
       <Feature />
+      
     </div>
   );
 }
