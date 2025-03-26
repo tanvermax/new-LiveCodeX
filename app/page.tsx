@@ -205,6 +205,7 @@ export default function Home() {
 
       </div> */}
       <Banner />
+
       <Courses />
       <Testimonials />
       <Feature />
