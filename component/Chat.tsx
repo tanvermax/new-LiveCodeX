@@ -44,7 +44,7 @@ const Chat = () => {
 
     return (
         <div className="flex mt-24 justify-center w-full">
-            {!join ? (<div className='flex flex-col w-full max-w-3xl mx-auto items-center '>
+            {!join ? (<div className='flex flex-col w-full max-w-3xl mx-auto items-center border p-4 rounded-lg bg-base-100 text-white'>
                 <h1 className='mb-4 text-2xl font-bold'>Join in a chat room</h1>
                 <input type="text" placeholder='Enter your username' value={userName} onChange={(e) => setUserName(e.target.value)} 
                 className='w-64 px-4 py-2 mb-4 border rounded-lg ' />

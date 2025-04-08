@@ -16,8 +16,6 @@ app.prepare().then(() => {
     const io = new Server(httpServer);
     io.on("connection", (socket) => {
         console.log("User Connected", socket.id)
-
-
         socket.on("join-room", ({room, userName}) => {
             socket.join(room);
             console.log(`User ${userName} joined room ${room}`)
@@ -28,20 +26,12 @@ app.prepare().then(() => {
             console.log(`Message: ${message} from ${sender}`)
             socket.to(room).emit("message", {sender, message});
         })
-
-
-
+        
         socket.on("disconnect", () => {
             console.log(`User Disconnected ${socket.id}`)
         });
 
     });
-
-
-
-
-
-
 
 
     httpServer.listen(port, ()=>{

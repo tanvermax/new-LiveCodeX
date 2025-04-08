@@ -4,9 +4,6 @@ import React from 'react'
 
 const DashboardPage = async () => {
   const session = await auth();
-
-  console.log(session);
-
   if (!session) {
     return redirect("/")
   }
