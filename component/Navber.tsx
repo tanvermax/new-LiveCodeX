@@ -1,4 +1,5 @@
 "use client";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -51,6 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
   }, []);
 
 
+  const [isOpen, setIsopen]= useState(false);
 
 
 
@@ -87,12 +89,12 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
         {/* Desktop Navigation Links (Tablet and Larger Devices) */}
         <ul className="hidden lg:flex lg:space-x-6 items-center">
           <li>
-            <Link href="/" className="hover:text-yellow-500">
+            <Link href="/" className="hover:text-yellow-500 text-xs lg:text-base ">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/compiler" className="hover:text-yellow-500">
+            <Link href="/compiler" className="hover:text-yellow-500  text-xs lg:text-base">
               Compiler
             </Link>
           </li>
@@ -101,12 +103,20 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
               About Us
             </Link>
           </li>
+
           <li>
-            <Link href="/contact" className="hover:text-yellow-500">
+            <Link href="/contact" className="hover:text-yellow-500 text-xs lg:text-base">
               Complete
             </Link>
           </li>
+          <li>
+            <Link href="/about" className="hover:text-yellow-500 text-xs lg:text-base">
+              About
+            </Link>
+          </li>
+
         </ul>
+     
 
         {/* User Section */}
         {(session || authUser) ? (
@@ -139,6 +149,69 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-full">
             <Link href="/login">Login</Link>
           </div>
+        )}
+        <div className="md:hidden">
+          {isOpen ? (
+            <AiOutlineClose
+              className="text-2xl cursor-pointer"
+              onClick={() => setIsopen(false)}
+            />
+          ) : (
+            <AiOutlineMenu
+              className="text-2xl cursor-pointer"
+              onClick={() => setIsopen(true)}
+            />
+          )}
+        </div>
+        <div
+        className={`fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-6 transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:hidden`}
+      >
+        <AiOutlineClose
+          className="text-2xl cursor-pointer mb-4"
+          onClick={() => setIsopen(false)}
+        />
+        <ul className="space-y-4">
+        <li>
+            <Link href="/" className="hover:text-yellow-500 text-xs lg:text-base ">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/compiler" className="hover:text-yellow-500  text-xs lg:text-base">
+              Compiler
+            </Link>
+          </li>
+          
+
+          <li>
+            <Link href="/practice" className="hover:text-yellow-500 text-xs lg:text-base">
+              Practice
+            </Link>
+          </li>
+
+          <li>
+            <Link href="/contact" className="hover:text-yellow-500 text-xs lg:text-base">
+              Complete
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="hover:text-yellow-500 text-xs lg:text-base">
+              About
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* Overlay for closing menu */}
+      {isOpen && (
+        <div
+          className="fixed inset-0  bg-opacity-50 md:hidden"
+          onClick={() => setIsopen(false)}
+        >
+
+        </div>
         )}
       </nav>
 
