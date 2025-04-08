@@ -9,7 +9,9 @@ const AboutPage = () => {
         </h2>
 
         <p className="mb-6 text-base sm:text-lg leading-relaxed">
+
           <strong className="text-indigo-600">LiveCodex</strong> is a modern, real-time collaborative code editor platform that empowers developers, students, and professionals to write, edit, debug, and execute code together — live and remotely. Whether it's for a team project, an interview, or a coding bootcamp, LiveCodex brings people together through seamless collaboration.
+
         </p>
 
         <p className="mb-6 text-base sm:text-lg leading-relaxed">
