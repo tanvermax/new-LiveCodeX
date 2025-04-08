@@ -8,10 +8,12 @@ export const SignIn = ({
 }: { provider?: string } & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
         <button
+        className="lg:text-lg text-xs"
             {...props}
             onClick={() => signIn(provider)} // ✅ Client-side execution
             type="button"
         >
+            
             Sign in with {provider ? provider : "Social Platform"}
         </button>
     );
@@ -24,7 +26,6 @@ export const SignOut = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) =>
             onClick={() => signOut({ callbackUrl: "/" })} // ✅ Redirect after logout
             type="button"
         >
-         
             Sign out
         </button>
     );

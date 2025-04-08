@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FaGoogle } from "react-icons/fa";
+import TerminalDemo from "./TerminalDemo";
 const Banner = () => {
     return (
         <section className="flex items-center justify-center py-12 md:py-20">
@@ -39,14 +40,7 @@ const Banner = () => {
 
                 {/* Right Image (Replace with actual image) */}
                 <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">
-                    <Image
-                        src="https://i.ibb.co.com/G31s1XJR/coder-1.png" // Replace with actual image
-                        alt="Coding illustration"
-                        width={500}
-                        height={500}
-                        priority
-                        className="max-w-[400px]"
-                    />
+                    <TerminalDemo/>
                 </div>
             </div>
         </section>
