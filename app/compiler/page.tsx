@@ -1,7 +1,10 @@
 "use client";
 import CodeEditor from '@/component/shared/CodeEditor';
 import LanguageSelector from '@/component/shared/LanguageSelector';
-import Toast from '@/component/shared/Toast';
+
+import Toast from '@/component/Toast';
+// import Toast from '@/component/shared/Toast';
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 const languageOptions = {
@@ -226,4 +229,4 @@ const CompilerPages = () => {
     )
 }
 
-export default CompilerPages
+export default CompilerPages  
