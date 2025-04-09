@@ -175,7 +175,7 @@ const CompilerPages = () => {
         return <p className="text-center text-gray-500">Loading...</p>;
     }
     return (
-        <div className="px-10 py-">
+        <div className="p-10">
             <h1 className="text-2xl font-bold text-center p-2">Multi-Language <span className="text-green-400">Online</span> Code Editor</h1>
 
             <LanguageSelector selectedLanguage={language} onChange={handleLanguageChange} />
