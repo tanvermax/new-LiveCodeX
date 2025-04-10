@@ -22,7 +22,6 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
   const router = useRouter();
   const [authUser, setAuthUser] = useState<any>(null);
 
-  const [authUser, setAuthUser] = useState<any>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
 
@@ -98,7 +97,6 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
 
         {/* Navigation Links */}
 
-        <ul className="lg:flex hidden space-x-6 items-center ">
 
         {/* Desktop Navigation Links (Tablet and Larger Devices) */}
         <ul className="hidden lg:flex lg:space-x-6 items-center">
@@ -131,10 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           </li>
 
           <li>
-            <Link
-              href="/contact"
-              className="hover:text-yellow-500 text-xs lg:text-base"
-            >
+           
 
             <Link href="/contact" className="hover:text-yellow-500 text-xs lg:text-base">
 
@@ -188,7 +183,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                 height={40}
                 className="rounded-full border-amber-300 border-2"
               />
-            </Link>
+            </div>
 
             <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-full">
 
