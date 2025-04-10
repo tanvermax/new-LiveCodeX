@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import axios from "axios";
-import swal from "sweetalert"
+import swal from "sweetalert";
+import { useRouter } from "next/navigation";
+
 interface FormData {
   name: string;
   email: string;
@@ -22,25 +24,37 @@ export default function RegistrationPage() {
 
   const [preview, setPreview] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (data: FormData) => {
     try {
-
-      data.image = preview
+      setIsLoading(true);
+      data.image = preview;
       const response = await axios.post("/pages/api/user/signup", data);
+
       if (response?.data?.success) {
         swal({
           title: response?.data?.message,
-          icon: "success"
-        })
+          icon: "success",
+        }).then(() => {
+          router.push("/");
+        });
       } else {
         swal({
           title: response?.data?.message,
-          icon: "warning"
-        })
+          icon: "warning",
+        });
       }
     } catch (error) {
       console.error("Registration error:", error);
+      swal({
+        title: "Registration failed!",
+        text: String(error),
+        icon: "error",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,75 +70,95 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg flex overflow-hidden">
-        {/* Left Section: Image */}
-        <div className="w-1/2 hidden md:flex items-center justify-center bg-gray-200">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <div className="w-full max-w-4xl bg-white shadow-md rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+        {/* Left: Image preview */}
+        <div className="hidden md:flex items-center justify-center bg-gray-100 p-6">
           {preview ? (
-            <Image src={preview} alt="Preview" width={300} height={300} className="rounded-lg" />
+            <Image
+              src={preview}
+              alt="Preview"
+              width={300}
+              height={300}
+              className="rounded-lg object-cover"
+            />
           ) : (
-            <p className="text-gray-500">Image Preview</p>
+            <p className="text-gray-500 text-center">Image Preview</p>
           )}
         </div>
 
-        {/* Right Section: Form */}
-        <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Right: Form */}
+        <div className="w-full p-6">
+          <h2 className="text-2xl font-semibold text-center mb-6">Register</h2>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Name */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Name</label>
+            <div>
+              <label className="block text-gray-700 mb-1">Name</label>
               <input
                 {...register("name", { required: "Name is required" })}
-                className="w-full text-black p-2 border rounded"
                 type="text"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
-              {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+              )}
             </div>
 
             {/* Email */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Email</label>
+            <div>
+              <label className="block text-gray-700 mb-1">Email</label>
               <input
                 {...register("email", { required: "Email is required" })}
-                className="w-full p-2 text-black border rounded"
                 type="email"
+                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
             </div>
 
             {/* Password */}
-            <div className="mb-4 relative">
-              <label className="block text-gray-700">Password</label>
+            <div className="relative">
+              <label className="block text-gray-700 mb-1">Password</label>
               <input
                 {...register("password", { required: "Password is required" })}
-                className="w-full p-2 border text-black rounded pr-10"
                 type={showPassword ? "text" : "password"}
+                className="w-full p-2 border border-gray-300 rounded pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
               <button
                 type="button"
-                className="absolute right-3 top-10 transform -translate-y-1/2"
                 onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-9 transform -translate-y-1/2 text-gray-600"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
-              {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
             </div>
 
-            {/* Image Upload */}
-            <div className="mb-4">
-              <label className="block text-gray-700">Upload Image</label>
+            {/* Image */}
+            <div>
+              <label className="block text-gray-700 mb-1">Upload Image</label>
               <input
                 type="file"
                 accept="image/*"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border border-gray-300 rounded"
                 onChange={handleImageChange}
               />
             </div>
 
-            {/* Submit Button */}
-            <button className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-              Register
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full p-2 rounded text-white transition ${
+                isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+            >
+              {isLoading ? "Registering..." : "Register"}
             </button>
           </form>
         </div>
