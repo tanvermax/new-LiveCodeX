@@ -1,6 +1,10 @@
 "use client";
 import CodeEditor from '@/component/shared/CodeEditor';
 import LanguageSelector from '@/component/shared/LanguageSelector';
+
+import Toast from '@/component/Toast';
+// import Toast from '@/component/shared/Toast';
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 const languageOptions = {
@@ -43,6 +47,7 @@ const CompilerPages = () => {
     const [code, setCode] = useState<string>(languageOptions[language].boilerplate);
     const [output, setOutput] = useState<string>("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showToast, setShowToast] = useState(false);
     const API_KEY = process.env.NEXT_PUBLIC_RAPIDAPI_KEY || ""; // Load API key from .env
 
     useEffect(() => {
@@ -54,7 +59,6 @@ const CompilerPages = () => {
         }
     }, []);
 
-    // Auto-save code to localStorage whenever it changes
     useEffect(() => {
         if (code) {
             localStorage.setItem("code-editor-content", code);
@@ -153,12 +157,26 @@ const CompilerPages = () => {
         }
     };
 
+
+
+    const copy = () => {
+        navigator.clipboard.writeText(code)
+            .then(() => {
+                setShowToast(true);
+                setTimeout(() => setShowToast(false), 2000);
+            })
+            .catch(() => {
+                setOutput("Failed to copy code.");
+            });
+    };
+
+
     if (!isClient) {
         return <p className="text-center text-gray-500">Loading...</p>;
     }
     return (
-        <div className="px-10 py-20">
-            <h1 className="text-2xl font-bold text-center p-4">Multi-Language <span className="text-green-400">Online</span> Code Editor</h1>
+        <div className="p-10">
+            <h1 className="text-2xl font-bold text-center p-2">Multi-Language <span className="text-green-400">Online</span> Code Editor</h1>
 
             <LanguageSelector selectedLanguage={language} onChange={handleLanguageChange} />
 
@@ -169,10 +187,11 @@ const CompilerPages = () => {
                     <pre>{output}</pre>
                 </div>
             </div>
-            <div className="flex space-x-3 mt-3">
+
+            <div className="flex flex-wrap justify-center space-y-4 sm:justify-start mt-3 sm:space-y-2 sm:space-x-4 lg:space-x-6">
                 <button
                     onClick={runCode}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow transition w-full sm:w-auto sm:mr-4"
                     disabled={isLoading}
                 >
                     {isLoading ? "Running..." : "Run Code"}
@@ -180,22 +199,34 @@ const CompilerPages = () => {
 
                 <button
                     onClick={downloadCode}
-                    className="px-4 py-2 bg-green-500 text-white rounded-md"
+                    className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow transition w-full sm:w-auto sm:mr-4"
                 >
                     Download Code
                 </button>
 
-                <input
-                    type="file"
-                    accept=".js,.py,.cpp,.java,.c,.cs,.rb,.swift,.php,.ts,.go,.rs,.kt,.r,.dart,.pl,.lua,.pas,.scala,.m,.sh,.clj,.hs,.f90,.jl,.fs,.scm,.lisp,.sql"
-                    onChange={uploadCode}
-                    className="px-4 py-2 bg-gray-200 text-black rounded-md cursor-pointer"
-                />
+                <label className="px-6 py-2 bg-gray-200 text-black rounded-lg shadow cursor-pointer transition hover:bg-gray-300 w-full sm:w-auto sm:mr-4">
+                    Upload Code
+                    <input
+                        type="file"
+                        accept=".js,.py,.cpp,.java,.c,.cs,.rb,.swift,.php,.ts,.go,.rs,.kt,.r,.dart,.pl,.lua,.pas,.scala,.m,.sh,.clj,.hs,.f90,.jl,.fs,.scm,.lisp,.sql"
+                        onChange={uploadCode}
+                        className="hidden"
+                    />
+                </label>
+
+                <button
+                    onClick={copy}
+                    className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg shadow transition w-full sm:w-auto sm:mr-4"
+                >
+                    Copy Code
+                </button>
             </div>
 
+
+            <Toast message="Code copied to clipboard!" show={showToast} />
 
         </div>
     )
 }
 
-export default CompilerPages
+export default CompilerPages  
