@@ -15,35 +15,21 @@ app.prepare().then(() => {
     const httpServer = createServer(handle);
     const io = new Server(httpServer);
     io.on("connection", (socket) => {
-<<<<<<< HEAD
-        console.log("User Connected", socket.id)
-        socket.on("join-room", ({room, userName}) => {
-            socket.join(room);
-            console.log(`User ${userName} joined room ${room}`)
-=======
         // console.log("User Connected", socket.id)
 
         socket.on("join-room", ({room, userName}) => {
             socket.join(room);
             // console.log(`User ${userName} joined room ${room}`)
->>>>>>> 027ce425a9d5a6f8bba7492169efabc58e8ae326
             socket.to(room).emit("user_joined", `${userName} joined the room`);
         })
 
         socket.on("message", ({room, message, sender}) => {
-<<<<<<< HEAD
-            console.log(`Message: ${message} from ${sender}`)
-            socket.to(room).emit("message", {sender, message});
-        })
-        
-=======
             // console.log(`Message: ${message} from ${sender}`)
             socket.to(room).emit("message", {sender, message});
         })
 
 
 
->>>>>>> 027ce425a9d5a6f8bba7492169efabc58e8ae326
         socket.on("disconnect", () => {
             console.log(`User Disconnected ${socket.id}`)
         });
