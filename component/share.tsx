@@ -1,5 +1,4 @@
 // pages/share.tsx
-import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import languageOptions from "../app/compiler/page"; // Ensure this import points to a valid LanguageOptions object
