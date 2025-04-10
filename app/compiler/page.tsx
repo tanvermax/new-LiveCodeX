@@ -7,6 +7,7 @@ import Toast from '@/component/Toast';
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { FaRegCopy } from 'react-icons/fa6';
 const languageOptions = {
     c: { id: 50, name: "C", extension: "c", boilerplate: "#include<stdio.h>\n\nint main()\n{\n\tprintf(\"Hello, World! from C\");\n\treturn 0;\n}" },
     cpp: { id: 54, name: "C++", extension: "cpp", boilerplate: "#include<iostream>\n\nint main()\n{\n\tstd::cout << \"Hello, World! from C++\";\n\treturn 0;\n}" },
@@ -50,6 +51,18 @@ const CompilerPages = () => {
     const [showToast, setShowToast] = useState(false);
     const API_KEY = process.env.NEXT_PUBLIC_RAPIDAPI_KEY || ""; // Load API key from .env
 
+
+    const shareCode = async () => {
+        try {
+          const response = await axios.post('/api/save-code', { code });
+      
+          if (response.data?.link) {
+            alert(`Code shared successfully! Share this link: ${response.data.link}`);
+          }
+        } catch (error) {
+          alert("Error sharing the code.");
+        }
+      };
     useEffect(() => {
         setIsClient(true);
 
@@ -218,7 +231,13 @@ const CompilerPages = () => {
                     onClick={copy}
                     className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg shadow transition w-full sm:w-auto sm:mr-4"
                 >
-                    Copy Code
+                    <FaRegCopy />
+                </button>
+                <button
+                    onClick={shareCode}
+                    className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow transition w-full sm:w-auto sm:mr-4"
+                >
+                    Share Code
                 </button>
             </div>
 
