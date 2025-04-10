@@ -7,11 +7,8 @@ import Banner from "../component/Banner";
 import Courses from "@/component/Courses";
 import Testimonials from "@/component/Testimonials";
 import Feature from "@/component/Feature";
-<<<<<<< HEAD
 import Chat from "@/component/Chat";
-=======
 import CodeEditor from "@/component/shared/CodeEditor";
->>>>>>> 027ce425a9d5a6f8bba7492169efabc58e8ae326
 
 // const languageOptions = {
 //   c: { id: 50, name: "C", extension: "c", boilerplate: "#include<stdio.h>\n\nint main()\n{\n\tprintf(\"Hello, World! from C\");\n\treturn 0;\n}" },
@@ -207,14 +204,11 @@ export default function Home() {
         </div>
 
 
-<<<<<<< HEAD
       <section className="py-8">
         <Chat/>
       </section>
 
-=======
       </div> */}
->>>>>>> 027ce425a9d5a6f8bba7492169efabc58e8ae326
       <Banner />
 
       <Courses />
