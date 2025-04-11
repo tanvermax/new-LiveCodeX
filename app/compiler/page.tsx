@@ -1,4 +1,5 @@
 "use client";
+
 import CodeEditor from '@/component/shared/CodeEditor';
 import LanguageSelector from '@/component/shared/LanguageSelector';
 
@@ -235,6 +236,9 @@ const CompilerPages = () => {
                     Share Code
                 </button>
             </div>
+
+            {/* <h1>Monaco Editor with Debugging</h1>
+            <MonacoDebugger code={code} language="javascript" onCodeChange={setCode} /> */}
 
 
             <Toast message="Code copied to clipboard!" show={showToast} />
