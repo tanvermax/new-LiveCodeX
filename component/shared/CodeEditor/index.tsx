@@ -85,7 +85,7 @@
 
 
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Editor from "@monaco-editor/react";
 
 type Props = {
@@ -94,6 +94,7 @@ type Props = {
   height?: string;
   width?: string;
   onChange?: (value: string | undefined) => void;
+  output?: string;
 };
 
 const DEFAULT_LANGUAGE = "javascript";
@@ -104,6 +105,8 @@ const CodeEditor = ({
   value,
   height = "50vh",
   onChange,
+  output,
+
 }: Props) => {
   const [theme, setTheme] = useState("vs-dark");
   const [code, setCode] = useState<string>("");
@@ -120,6 +123,7 @@ const CodeEditor = ({
     setTheme(event.target.value);
   };
 
+
   const handleCodeChange = (value: string | undefined) => {
     try {
       setCode(value || "");
@@ -132,12 +136,14 @@ const CodeEditor = ({
     }
   };
 
+
   return (
     <div>
       <div className="mb-4">
-        <label htmlFor="theme-selector" className="mr-2 font-bold">
+        {/* <label htmlFor="theme-selector" className="mr-2 font-bold">
           Select Theme:
-        </label>
+        </label> */}
+
         <select
           id="theme-selector"
           value={theme}
@@ -150,15 +156,31 @@ const CodeEditor = ({
         </select>
       </div>
 
-      <Editor
-        className="text-xl"
-        theme={theme}
-        height={height}
-        onChange={handleCodeChange}
-        defaultLanguage={DEFAULT_LANGUAGE}
-        language={language || DEFAULT_LANGUAGE}
-        value={value || code}
-      />
+
+
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
+        {/* Monaco Editor */}
+        <Editor
+          className=" text-xl "
+          theme={theme}
+          height={height}
+          // width={width}
+          onChange={handleCodeChange}
+          defaultLanguage={DEFAULT_LANGUAGE}
+          language={language ?? DEFAULT_LANGUAGE}
+          value={value || code || ""} // Added value prop
+          options={{
+            padding: { top: 16, bottom: 16 }, // Adds padding inside the editor
+          }}
+        />
+        {/* output section  */}
+        <div className="bg-gray-900 text-white p-3 min-h-[100px]">
+          <strong>Output:</strong>
+          <pre>{output}</pre>
+        </div>
+      </div>
+
+
     </div>
   );
 };
