@@ -17,6 +17,7 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": "off",
       "@next/next/no-async-client-component": "off",
       "react-hooks/rules-of-hooks": "off",
+      "@typescript-eslint/no-require-imports": "off",
     },
   },
 ];

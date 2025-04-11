@@ -7,15 +7,13 @@ import Banner from "../component/Banner";
 import Courses from "@/component/Courses";
 import Testimonials from "@/component/Testimonials";
 import Feature from "@/component/Feature";
+import Chat from "@/component/Chat";
 import CodeEditor from "@/component/shared/CodeEditor";
 
 export default function Home() {
   return (
-    
     <div className="p-4">
-      
       <Banner />
-
       <Courses />
       <Testimonials />
       <Feature />
