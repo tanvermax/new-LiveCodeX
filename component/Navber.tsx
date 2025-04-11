@@ -128,6 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
           </li>
 
           <li>
+           
 
             <Link href="/contact" className="hover:text-yellow-500 text-xs lg:text-base">
 
@@ -279,7 +280,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`lg:hidden fixed top-0 left-0 w-3/4 h-full bg-gray-800 p-6 space-y-4 transition-transform transform ${
+        className={`lg:hidden z-50 fixed top-0 left-0 w-3/4 h-full bg-gray-800 p-6 space-y-4 transition-transform transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
