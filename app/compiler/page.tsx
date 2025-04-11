@@ -54,15 +54,15 @@ const CompilerPages = () => {
 
     const shareCode = async () => {
         try {
-          const response = await axios.post('/api/save-code', { code });
-      
-          if (response.data?.link) {
-            alert(`Code shared successfully! Share this link: ${response.data.link}`);
-          }
+            const response = await axios.post('/api/save-code', { code });
+
+            if (response.data?.link) {
+                alert(`Code shared successfully! Share this link: ${response.data.link}`);
+            }
         } catch (error) {
-          alert("Error sharing the code.");
+            alert("Error sharing the code.");
         }
-      };
+    };
     useEffect(() => {
         setIsClient(true);
 
@@ -193,13 +193,8 @@ const CompilerPages = () => {
 
             <LanguageSelector selectedLanguage={language} onChange={handleLanguageChange} />
 
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                <CodeEditor language={language} value={code} onChange={(value) => setCode(value ?? "")} />
-                <div className="bg-gray-900 text-white p-3 rounded-md min-h-[100px] mt-3">
-                    <strong>Output:</strong>
-                    <pre>{output}</pre>
-                </div>
-            </div>
+            <CodeEditor language={language} value={code} onChange={(value) => setCode(value ?? "")} output={output}/>
+
 
             <div className="flex flex-wrap justify-center space-y-4 sm:justify-start mt-3 sm:space-y-2 sm:space-x-4 lg:space-x-6">
                 <button
