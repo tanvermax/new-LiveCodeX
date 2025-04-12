@@ -32,7 +32,7 @@ const CodeEditor = ({
     setTheme(event.target.value);
   };
 
-
+ 
   const handleCodeChange = (value: string | undefined) => {
     try {
       setCode(value || "");
@@ -44,7 +44,7 @@ const CodeEditor = ({
       console.error("Error saving to localStorage:", error);
     }
   };
-
+  
 
   return (
     <div>
@@ -65,31 +65,17 @@ const CodeEditor = ({
         </select>
       </div>
 
-
-
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-4">
-        {/* Monaco Editor */}
-        <Editor
-          className=" text-xl "
-          theme={theme}
-          height={height}
-          // width={width}
-          onChange={handleCodeChange}
-          defaultLanguage={DEFAULT_LANGUAGE}
-          language={language ?? DEFAULT_LANGUAGE}
-          value={value || code || ""} // Added value prop
-          options={{
-            padding: { top: 16, bottom: 16 }, // Adds padding inside the editor
-          }}
-        />
-        {/* output section  */}
-        <div className="bg-gray-900 text-white p-3 min-h-[100px]">
-          <strong>Output:</strong>
-          <pre>{output}</pre>
-        </div>
-      </div>
-
-
+      {/* Monaco Editor */}
+      <Editor
+        className=" text-xl "
+        theme={theme}
+        height={height}
+        // width={width}
+        onChange={handleCodeChange}
+        defaultLanguage={DEFAULT_LANGUAGE}
+        language={language ?? DEFAULT_LANGUAGE}
+        value={value || code || ""} // Added value prop
+      />
     </div>
   );
 };
