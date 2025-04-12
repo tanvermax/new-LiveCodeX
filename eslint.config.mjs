@@ -18,6 +18,7 @@ const eslintConfig = [
       "@next/next/no-async-client-component": "off",
       "react-hooks/rules-of-hooks": "off",
       "@typescript-eslint/no-require-imports": "off",
+      "@react/no-unescaped-entities":"off",
     },
   },
 ];
