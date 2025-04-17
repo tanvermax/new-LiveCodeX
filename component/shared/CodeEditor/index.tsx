@@ -1,50 +1,109 @@
-
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
+import { io, Socket } from "socket.io-client"; // 🔥 Added
 
 type Props = {
   language: string;
   value?: string;
   height?: string;
-  width?: string;
+  roomId?: string; // 🔥 Added for collaboration
   onChange?: (value: string | undefined) => void;
 };
 
 const DEFAULT_LANGUAGE = "javascript";
-const LOCAL_STORAGE_KEY = "code-editor-content"; // Key for local storage
+const LOCAL_STORAGE_KEY = "code-editor-content";
+
+let socket: Socket; // 🔥 Added
 
 const CodeEditor = ({
   language,
   value,
-  // width = "50vw",
   height = "50vh",
+  roomId, // 🔥 Added
   onChange,
 }: Props) => {
-  const [theme, setTheme] = useState("vs-dark"); // Initial theme
+  const [theme, setTheme] = useState("vs-dark");
+
   const [code, setCode] = useState<string>(() => {
-    // Load saved code from local storage on initial render
-    return localStorage.getItem(LOCAL_STORAGE_KEY) || "";
+    // 🔥 Modified to support SSR-safe localStorage access
+    return typeof window !== "undefined"
+      ? localStorage.getItem(LOCAL_STORAGE_KEY) || ""
+      : "";
   });
 
-  // Function to handle theme change
+  const skipEmitRef = useRef(false); // 🔥 Added
+
+  // 🔥 Setup Socket.IO connection and listeners
+  useEffect(() => {
+    socket = io({
+      path: "http://localhost:3000/api/socketio", // adjust if needed
+    });
+
+    socket.emit("join_room", roomId); // 🔥 Join a specific room
+
+    socket.on("receive_code", (incomingCode: string) => {
+      if (incomingCode !== code) {
+        skipEmitRef.current = true; // 🔥 Prevent echo
+        setCode(incomingCode);
+        localStorage.setItem(LOCAL_STORAGE_KEY, incomingCode);
+      }
+    });
+
+    return () => {
+      socket.disconnect(); // 🔥 Cleanup
+    };
+  }, [roomId,code]);
+
+
+  // useEffect(() => {
+  //   if (!roomId) return;
+  
+  //   const socket = io({ path: "http://localhost:3000/api/socketio" });
+  
+  //   socket.on("connect", () => {
+  //     console.log("Connected with socket ID:", socket.id);
+  //     socket.emit("join_room", roomId);
+  //   });
+  
+  //   socket.on("receive_code", (incomingCode) => {
+  //     if (incomingCode !== code) {
+  //       setCode(incomingCode);
+  //     }
+  //   });
+  
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, [roomId,code]);
+
+  // Theme selection
   const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setTheme(event.target.value);
   };
 
- 
+  // 🔥 Modified to emit code changes through socket
   const handleCodeChange = (value: string | undefined) => {
     try {
-      setCode(value || "");
-      localStorage.setItem(LOCAL_STORAGE_KEY, value || ""); // Auto-save to local storage
+      const newCode = value || "";
+      setCode(newCode);
+      localStorage.setItem(LOCAL_STORAGE_KEY, newCode);
+
       if (onChange) {
-        onChange(value);
+        onChange(newCode);
+      }
+
+      // 🔥 Emit only if not from socket
+      if (!skipEmitRef.current) {
+        socket.emit("code_change", { roomId, code: newCode });
+      } else {
+        skipEmitRef.current = false;
       }
     } catch (error) {
-      console.error("Error saving to localStorage:", error);
+      console.error("Error in code change handler:", error);
     }
   };
-  
 
   return (
     <div>
@@ -61,20 +120,19 @@ const CodeEditor = ({
         >
           <option value="vs-dark">Dark</option>
           <option value="vs-light">Light</option>
-          <option value="hc-black"> Contrast</option>
+          <option value="hc-black">Contrast</option>
         </select>
       </div>
 
       {/* Monaco Editor */}
       <Editor
-        className=" text-xl "
+        className="text-xl"
         theme={theme}
         height={height}
-        // width={width}
         onChange={handleCodeChange}
         defaultLanguage={DEFAULT_LANGUAGE}
         language={language ?? DEFAULT_LANGUAGE}
-        value={value || code || ""} // Added value prop
+        value={code}
       />
     </div>
   );
