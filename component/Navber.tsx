@@ -117,6 +117,14 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
               Compiler
             </Link>
           </li>
+          <li>
+            <Link
+              href="/editor"
+              className="hover:text-yellow-500  text-xs lg:text-base"
+            >
+              Editor
+            </Link>
+          </li>
 
           <li>
 
@@ -251,6 +259,14 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                 Practice
               </Link>
             </li>
+            <li>
+            <Link
+              href="/editor"
+              className="hover:text-yellow-500  text-xs lg:text-base"
+            >
+              Editor
+            </Link>
+          </li>
 
             <li>
               <Link
