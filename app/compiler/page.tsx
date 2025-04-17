@@ -52,17 +52,7 @@ const CompilerPages = () => {
     const API_KEY = process.env.NEXT_PUBLIC_RAPIDAPI_KEY || ""; // Load API key from .env
 
 
-    const shareCode = async () => {
-        try {
-          const response = await axios.post('/api/save-code', { code });
-      
-          if (response.data?.link) {
-            alert(`Code shared successfully! Share this link: ${response.data.link}`);
-          }
-        } catch (error) {
-          alert("Error sharing the code.");
-        }
-      };
+    
     useEffect(() => {
         setIsClient(true);
 
@@ -191,28 +181,7 @@ const CompilerPages = () => {
 
    // Inside your CompilerPages component, after your useState declarations:
 
-   const handleShare = async () => {
-    // assume you have these in scope:
-    //   const [code, setCode] = useState(...)
-    //   const [language, setLanguage] = useState(...)
-    try {
-      const response = await fetch('/api/save-code', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, language }),
-      });
-      const data = await response.json();
-      if (data.link) {
-        const fullLink = `${window.location.origin}${data.link}`;
-        alert(`Code shared! Link:\n${fullLink}`);
-      } else {
-        alert(`Share error: ${data.error}`);
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Unexpected error sharing code.');
-    }
-  };
+   
   
   
     return (

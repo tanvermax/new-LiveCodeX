@@ -117,6 +117,14 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
               Compiler
             </Link>
           </li>
+          <li>
+            <Link
+              href="/editor"
+              className="hover:text-yellow-500  text-xs lg:text-base"
+            >
+              Editor
+            </Link>
+          </li>
 
           <li>
 
@@ -169,8 +177,10 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                 />
               )}
             </Link>
-
-            <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full">
+<p>
+  {session?.user?.name}
+</p>
+            {/* <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 rounded-full">
 
               <Image
                 src={
@@ -183,7 +193,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                 height={40}
                 className="rounded-full border-amber-300 border-2"
               />
-            </div>
+            </div> */}
 
             <div className="bg-blue-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-full">
 
@@ -249,6 +259,14 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                 Practice
               </Link>
             </li>
+            <li>
+            <Link
+              href="/editor"
+              className="hover:text-yellow-500  text-xs lg:text-base"
+            >
+              Editor
+            </Link>
+          </li>
 
             <li>
               <Link
@@ -281,7 +299,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`lg:hidden z-50 fixed top-0 left-0 w-3/4 h-full bg-gray-800 p-6 space-y-4 transition-transform transform ${
+        className={`lg:hidden z-50 fixed top-0 left-0 w-1/4 h-full bg-gray-800 p-6 space-y-4 transition-transform transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
