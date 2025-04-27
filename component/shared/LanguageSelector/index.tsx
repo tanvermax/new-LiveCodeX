@@ -42,20 +42,23 @@ interface LanguageSelectorProps {
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ selectedLanguage, onChange }) => {
   return (
-    <div className="mb-4">
-      <label htmlFor="language" className="block font-bold">Select Language:</label>
-      <select
-        id="language"
-        className="border rounded-md px-3 py-2 w-full"
-        value={selectedLanguage}
-        onChange={(e) => onChange(e.target.value as keyof typeof languageOptions)}
-      >
-        {Object.entries(languageOptions).map(([key, { name }]) => (
-          <option key={key} value={key}>
-            {name}
-          </option>
-        ))}
-      </select>
+    <div className="flex flex-col items-start justify-start ">
+      <div></div>
+      <div className="mb-4 max-w-2xs">
+        {/* <label htmlFor="language" className="block font-bold">Select Language:</label> */}
+        <select
+          id="language"
+          className="border rounded-md px-3 py-2 w-full "
+          value={selectedLanguage}
+          onChange={(e) => onChange(e.target.value as keyof typeof languageOptions)}
+        >
+          {Object.entries(languageOptions).map(([key, { name }]) => (
+            <option key={key} value={key}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

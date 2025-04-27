@@ -60,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
     };
 
     fetchUser();
-  }, []);
+  }, [setAuthUser]);
 
   const [isOpen, setIsopen] = useState(false);
 
@@ -96,7 +96,6 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
 
 
         {/* Navigation Links */}
-
 
         {/* Desktop Navigation Links (Tablet and Larger Devices) */}
         <ul className="hidden lg:flex lg:space-x-6 items-center">
